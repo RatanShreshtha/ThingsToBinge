@@ -1,104 +1,91 @@
 <template>
-  <main class="jumbotron bg-light mb-0">
-    <h1 class="d-none d-md-block display-1">Things To Watch In Quarantine.</h1>
-    <h1 class="d-md-none d-block">Things To Watch In Quarantine.</h1>
-    <p class="h5 text-justify">
-      Are you bored in quarantine? Lets keep you entertained by suggesting
-      movies and tv series to binge on in this quarantine from genres like
-      action
-      <img
-        class="img-fluid d-inline"
-        src="../assets/img/boom.png"
-        alt="Action"
-      />, comedy
-      <img
-        class="img-fluid d-inline"
-        src="../assets/img/comedy.png"
-        alt="Comedy"
-      />, crime
-      <img
-        class="img-fluid d-inline"
-        src="../assets/img/scales.png"
-        alt="Crime"
-      />, fantasy
-      <img
-        class="img-fluid d-inline"
-        src="../assets/img/fantasy.png"
-        alt="Fantasy"
-      />, horror
-      <img
-        class="img-fluid d-inline"
-        src="../assets/img/scream.png"
-        alt="Scream"
-      />, romance
-      <img
-        class="img-fluid d-inline"
-        src="../assets/img/winged-heart.png"
-        alt="Romance"
-      />, sci-fi
-      <img
-        class="img-fluid d-inline"
-        src="../assets/img/robot.png"
-        alt="Sci-Fi"
-      />, sports
-      <img
-        class="img-fluid d-inline"
-        src="../assets/img/jersey.png"
-        alt="Sports"
-      />
-      and many more
-      <img
-        class="img-fluid d-inline"
-        src="../assets/img/book-shelf.png"
-        alt="shelf"
-      />
-      at random.
+  <main class="container-fluid mb-0">
+    <h1 class="d-md-none">Things To Watch In Quarantine.</h1>
+    <h1 class="d-none d-md-block display-1 text-center">
+      Things To Watch In Quarantine.
+    </h1>
+    <p class="lead text-center">
+      Lets keep you entertained by suggesting movies and serieses to binge on in
+      this quarantine from many genres at random.
     </p>
-    <div class="container">
-      <div class="row justify-content-center m-4">
-        <div class="col-md-6 text-center">
-          <a href="/content/movie">
-            <img
-              class="img-fluid mx-auto d-block"
-              src="../assets/img/documentary.png"
-              alt="Movies"
-            />
-            <p class="display-4 mt-2 text-dark">
-              Movies
-            </p>
-          </a>
-        </div>
-        <div class="col-md-6 text-center">
-          <a href="/content/tv-series">
-            <img
-              class="img-fluid mx-auto d-block"
-              src="../assets/img/retro-tv.png"
-              alt="Movies"
-            />
+    <hr class="my-4" />
 
-            <p class="display-4 mt-2 text-dark">
-              TV Series
-            </p>
-          </a>
-        </div>
+    <p class="lead text-center">
+      <span
+        class="font-weight-bold text-capitalize"
+        v-for="(genre, i) in genres"
+        :key="i"
+      >
+        {{ genre.name }}
+        <img class="img-fluid d-inline" :src="genre.imgUrl" :alt="genre.name" />
+        <span v-if="lastIndex != i">,</span>
+      </span>
+    </p>
+    <hr class="my-4" />
+    <div class="row justify-content-around">
+      <div class="col-md-4 text-center">
+        <router-link :to="{ name: 'genres', params: { type: 'movies' } }">
+          <img
+            class="img-fluid mx-auto d-block"
+            src="https://firebasestorage.googleapis.com/v0/b/things-to-watch-in-quarantine.appspot.com/o/movies.png?alt=media&token=21d45122-ca44-4d5b-8411-d06cb0aa48bf"
+            alt="Movies"
+          />
+          <p class="d-none d-md-block display-4 mt-2 text-dark">
+            Movies
+          </p>
+          <p class="d-md-none lead mt-2 text-dark">
+            Movies
+          </p>
+        </router-link>
+      </div>
+      <div class="col-md-4 text-center">
+        <router-link :to="{ name: 'genres', params: { type: 'tv-series' } }">
+          <img
+            class="img-fluid mx-auto d-block"
+            src="https://firebasestorage.googleapis.com/v0/b/things-to-watch-in-quarantine.appspot.com/o/tv-series.png?alt=media&token=f21c7c39-1d61-4299-aec6-30b65f4ba7b7"
+            alt="Movies"
+          />
+
+          <p class="d-none d-md-block display-4 mt-2 text-dark">
+            TV Series
+          </p>
+          <p class="d-md-none lead mt-2 text-dark">
+            TV Series
+          </p>
+        </router-link>
       </div>
     </div>
   </main>
 </template>
 
 <script>
+import { db } from "@/firebase";
+
 export default {
-  name: "Home"
+  name: "Home",
+  data: () => ({
+    genres: []
+  }),
+  computed: {
+    lastIndex() {
+      return this.genres.length - 1;
+    }
+  },
+  firestore() {
+    return {
+      genres: db.collection("genres")
+    };
+  }
 };
 </script>
 
 <style scoped>
-img.d-block {
-  width: 400px;
-  height: 400px;
-}
 img.d-inline {
   width: 50px;
   height: 50px;
+}
+img.d-block {
+  width: 300px;
+  height: 300px;
 }
 </style>

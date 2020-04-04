@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav class="navbar navbar-expand-md navbar-light">
     <a class="navbar-brand" href="/">
       t<sub>2</sub>wiq
     </a>
@@ -21,23 +21,59 @@
       </span>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/">
+          <router-link to="/" tag="a" class="nav-link" active-class="active">
             <img
-              class="img-fluid d-inline mr-2"
-              src="../assets/img/home.png"
+              class="d-inline mr-2"
+              src="https://firebasestorage.googleapis.com/v0/b/things-to-watch-in-quarantine.appspot.com/o/home.png?alt=media&token=94eb16db-f68b-47ae-a655-0430dc19ed41"
               alt="Home"
             />
             Home
-          </a>
+          </router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/about">
-            <img
-              class="img-fluid d-inline mr-2"
-              src="../assets/img/information.png"
-              alt="About"
-            />About</a
+          <router-link
+            :to="{ name: 'genres', params: { type: 'movies' } }"
+            tag="a"
+            class="nav-link"
+            active-class="active"
           >
+            <img
+              class="d-inline mr-2"
+              src="https://firebasestorage.googleapis.com/v0/b/things-to-watch-in-quarantine.appspot.com/o/movies.png?alt=media&token=21d45122-ca44-4d5b-8411-d06cb0aa48bf"
+              alt="Movies"
+            />
+            Movies
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link
+            :to="{ name: 'genres', params: { type: 'tv-series' } }"
+            tag="a"
+            class="nav-link"
+            active-class="active"
+          >
+            <img
+              class="d-inline mr-2"
+              src="https://firebasestorage.googleapis.com/v0/b/things-to-watch-in-quarantine.appspot.com/o/tv-series.png?alt=media&token=f21c7c39-1d61-4299-aec6-30b65f4ba7b7"
+              alt="Series"
+            />
+            TV Series
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link
+            :to="{ name: 'about' }"
+            tag="a"
+            class="nav-link"
+            active-class="active"
+          >
+            <img
+              class="d-inline mr-2"
+              src="https://firebasestorage.googleapis.com/v0/b/things-to-watch-in-quarantine.appspot.com/o/information.png?alt=media&token=fd6a6b63-5e42-4671-b01a-ed0a659f02ad"
+              alt="About"
+            />
+            About
+          </router-link>
         </li>
       </ul>
     </div>
@@ -51,7 +87,7 @@ export default {
 </script>
 
 <style scoped>
-img.img-fluid {
+img {
   width: 30px;
   height: 30px;
 }

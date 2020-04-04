@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Navbar />
+
     <router-view />
+
     <Footbar />
   </div>
 </template>
@@ -17,4 +19,8 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+#app {
+  font-family: "Nova Mono", monospace;
+}
+</style>

@@ -1,4 +1,4 @@
-# things-to-watch-in-quarantine
+# Things To Watch In Quarantine
 
 ## Project setup
 ```
