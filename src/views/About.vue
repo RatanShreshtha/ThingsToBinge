@@ -1,52 +1,29 @@
 <template>
-  <main class="container mb-0">
-    <h1 class="d-none d-md-block display-1">
-      This portal suggests movies and tv series to binge on in this quarantine.
-    </h1>
-    <h1 class="d-md-none">
-      This portal suggests movies and tv series to binge on in this quarantine.
-    </h1>
+  <b-container class="p-4">
+    <h1>This portal suggests movie and Series to binge on.</h1>
     <hr class="my-4" />
-    <p class="display-4 text-center">
-      Built Using
-    </p>
-    <p class="lead text-center">
-      HTML5, CSS3, JavaScript, Bootstrap4, Vue.js, Firebase
-    </p>
-
-    <p class="lead text-center">
+    <h2 class="text-center mb-4">
+      <u>Built Using</u>
+    </h2>
+    <h2 class="text-center">
+      HTML5 <i class="fab fa-html5"></i>, CSS3 <i class="fab fa-css3-alt"></i>, JavaScript
+      <i class="fab fa-js-square"></i>, Bootstrap4 <i class="fab fa-bootstrap"></i>, Vue.js <i class="fab fa-vuejs"></i>
+      <br />
       +
-    </p>
-    <p class="lead text-center">
-      <img
-        class="img-fluid d-inline"
-        src="https://firebasestorage.googleapis.com/v0/b/things-to-watch-in-quarantine.appspot.com/o/stitched-heart.png?alt=media&token=00fedb3f-82bf-4109-a73a-35f51f4cba4d"
-        alt="Sports"
-      />
-      <img
-        class="img-fluid d-inline"
-        src="https://firebasestorage.googleapis.com/v0/b/things-to-watch-in-quarantine.appspot.com/o/time-machine.png?alt=media&token=ab67cf2b-b4d2-4f63-995d-eb7bffedcb89"
-        alt="Sports"
-      />
-    </p>
-    <p class="lead text-center">
+      <br />
+      Firebase
+      <br />
       +
-    </p>
-    <p class="lead text-center">
+      <br />
       The Open Movie Database
-    </p>
-  </main>
+    </h2>
+  </b-container>
 </template>
 
 <script>
 export default {
-  name: "About"
-};
+  name: 'About'
+}
 </script>
 
-<style scoped>
-img.d-inline {
-  width: 50px;
-  height: 50px;
-}
-</style>
+<style scoped></style>

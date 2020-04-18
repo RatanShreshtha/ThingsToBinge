@@ -1,4 +1,4 @@
-# Things To Watch In Quarantine
+# Things To Binge
 
 ## Project setup
 ```
