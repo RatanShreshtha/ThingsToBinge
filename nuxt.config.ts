@@ -9,5 +9,5 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ["assets/main.scss"],
+  css: ["assets/main.scss", "@fortawesome/fontawesome-free/css/all.css"],
 })
