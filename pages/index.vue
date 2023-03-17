@@ -7,7 +7,7 @@
           Things To Binge
         </h1>
         <p class="subtitle is-3">
-          Lets keep you entertained by suggesting movie and series to binge on from many genres at random.
+          Lets keep you entertained by suggesting movie and tv content to binge on from many genres at random.
         </p>
         <hr>
         <p class="subtitle">

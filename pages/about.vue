@@ -6,7 +6,7 @@
           Things To Binge
         </h1>
         <p class="subtitle is-3">
-          This portal suggests movie and series to binge on from many genres at random.
+          This portal suggests movie and tv content to binge on from many genres at random.
         </p>
         <hr>
         <p class="subtitle">
@@ -15,15 +15,12 @@
 
         <div class="content">
           <p>
-            HTML, CSS, JavaScript, Bulma, Vue
+            HTML, CSS, JavaScript, Bulma, Nuxt
+            <p>+</p>
+            <a href="https://supabase.com/" target="_blank">Supabase</a>
+            <p>+</p>
+            <a href="https://www.themoviedb.org" target="_blank">The Movie Database (TMDB)</a>
           </p>
-          +
-          <p>
-            Firebase
-          </p>
-
-          +
-          <p><a href="https://www.themoviedb.org" target="_blank">The Movie Database (TMDB)</a></p>
         </div>
       </div>
     </div>
