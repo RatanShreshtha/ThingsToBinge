@@ -26,6 +26,12 @@ const toggleNavbar = () => {
         <NuxtLink class="navbar-item" active-class="is-active" :to="{ name: 'index' }">
           Home
         </NuxtLink>
+        <NuxtLink class="navbar-item" active-class="is-active" :to="{ name: 'genres-type' , params:{type: 'movie'}}">
+          Movie
+        </NuxtLink>
+        <NuxtLink class="navbar-item" active-class="is-active" :to="{ name: 'genres-type', params:{type: 'tv'} }">
+          TV
+        </NuxtLink>
         <NuxtLink class="navbar-item" active-class="is-active" :to="{ name: 'about' }">
           About
         </NuxtLink>

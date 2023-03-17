@@ -1,12 +1,31 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        About Page
-      </h1>
-      <p class="subtitle">
-        The about page.
-      </p>
+  <section class="hero is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title is-1">
+          Things To Binge
+        </h1>
+        <p class="subtitle is-3">
+          This portal suggests movie and series to binge on from many genres at random.
+        </p>
+        <hr>
+        <p class="subtitle">
+          Built Using
+        </p>
+
+        <div class="content">
+          <p>
+            HTML, CSS, JavaScript, Bulma, Vue
+          </p>
+          +
+          <p>
+            Firebase
+          </p>
+
+          +
+          <p><a href="https://www.themoviedb.org" target="_blank">The Movie Database (TMDB)</a></p>
+        </div>
+      </div>
     </div>
   </section>
 </template>
