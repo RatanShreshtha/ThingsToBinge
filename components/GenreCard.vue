@@ -6,7 +6,7 @@ const { genre } = defineProps({
   },
 });
 
-const imageUrl = `https://hxdzmtckymdjnmhozyzu.supabase.co/storage/v1/object/public/genres/${genre.name}.png`
+const imageUrl = `/img/genres/${genre.name}.png`
 </script>
 
 <template>
