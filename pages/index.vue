@@ -24,7 +24,7 @@
               </div>
               <div class="card-image">
                 <figure class="image is-square">
-                  <img src="../assets/film-reel.png" alt="Movie">
+                  <img src="img/content-type/film-reel.png" alt="Movie">
                 </figure>
               </div>
               <div class="card-content">
@@ -48,7 +48,7 @@
               </div>
               <div class="card-image">
                 <figure class="image is-square">
-                  <img src="../assets/retro-tv.png" alt="TV">
+                  <img src="img/content-type/retro-tv.png" alt="TV">
                 </figure>
               </div>
               <div class="card-content">

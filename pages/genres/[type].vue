@@ -10,6 +10,17 @@ const route = useRoute()
 const contentType = route.params.type
 
 const { data } = await useFetch(`/api/genres/${contentType}`)
+
+const genresIdMapping = {};
+
+for (const genre of data._rawValue) {
+  genresIdMapping[genre.name] = genre.id;
+
+}
+
+if (process.client) {
+  localStorage.setItem(`${contentType}-genres`, JSON.stringify(genresIdMapping));
+}
 </script>
 
 <template>
