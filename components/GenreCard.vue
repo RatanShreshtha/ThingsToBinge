@@ -20,7 +20,7 @@ const imageUrl = `/img/genres/${genre.name}.png`
     </div>
     <div class="card-image">
       <figure class="image is-square">
-        <img :src="imageUrl" :alt="genre.name">
+        <nuxt-img :src="imageUrl" :alt="genre.name" placeholder />
       </figure>
     </div>
     <div class="card-content">
