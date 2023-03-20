@@ -16,7 +16,7 @@ if (process.client) {
 }
 
 
-const { data } = await useFetch(`/api/content/${genreId}/${contentType}`, {key: `${Date.now()}`})
+const { data: content } = await useFetch(`/api/content/${genreId}/${contentType}`, { key: `content:${genreName}::${contentType}`, initialCache: false })
 </script>
 
 <template>
@@ -30,7 +30,7 @@ const { data } = await useFetch(`/api/content/${genreId}/${contentType}`, {key: 
           This is our suggestion for {{ genreName.toLocaleLowerCase() }} {{ contentType }} to binge on.
         </p>
         <hr>
-        <ContentDetailsCard :content="data" />
+        <ContentDetailsCard :content="content" />
       </div>
     </div>
   </section>
