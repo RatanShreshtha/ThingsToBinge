@@ -16,7 +16,7 @@ if (process.client) {
 }
 
 
-const { data } = await useFetch(`/api/content/${genreId}/${contentType}`)
+const { data } = await useFetch(`/api/content/${genreId}/${contentType}`, {key: `${Date.now()}`})
 </script>
 
 <template>
