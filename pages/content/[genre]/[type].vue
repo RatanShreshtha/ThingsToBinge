@@ -6,9 +6,17 @@ definePageMeta({
   }
 })
 
+let genreId
 const route = useRoute()
-const genre = route.params.genre
+const genreName = route.params.genre
 const contentType = route.params.type
+
+if (process.client) {
+  genreId = JSON.parse(localStorage.getItem(`${contentType}-genres`))[genreName]
+}
+
+
+const { data } = await useFetch(`/api/content/${genreId}/${contentType}`)
 </script>
 
 <template>
@@ -16,15 +24,13 @@ const contentType = route.params.type
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title is-1">
-            {{genre}} {{contentType}}
+          {{ genreName }} {{ contentType }}
         </h1>
         <p class="subtitle is-3">
-          Lets keep you entertained by suggesting {{ contentType }} content to binge on from folowing genres at random.
+          This is our suggestion for {{ genreName.toLocaleLowerCase() }} {{ contentType }} to binge on.
         </p>
         <hr>
-        <p class="subtitle">
-          Pick from any of the following genres
-        </p>
+        <ContentDetailsCard :content="data" />
       </div>
     </div>
   </section>
