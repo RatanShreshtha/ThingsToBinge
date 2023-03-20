@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     },
   },
   css: ["assets/main.scss", "@fortawesome/fontawesome-free/css/all.css"],
+  image: { provider: 'netlify' },
   runtimeConfig: {
     tmdbApiKey: process.env.TMDB_API_KEY
   }
