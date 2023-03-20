@@ -11,6 +11,6 @@ export default defineNuxtConfig({
   },
   css: ["assets/main.scss", "@fortawesome/fontawesome-free/css/all.css"],
   runtimeConfig: {
-    tmdbApiKey:  process.env.TMDB_API_KEY
+    tmdbApiKey: process.env.TMDB_API_KEY
   }
 })
