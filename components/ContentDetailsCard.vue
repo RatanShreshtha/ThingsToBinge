@@ -24,7 +24,7 @@ const posterPath = `https://image.tmdb.org/t/p/w300/${content.poster_path}`
       <div class="media">
         <div class="media-left">
           <figure class="image">
-            <nuxt-img :src="posterPath" :alt="content.title" placeholder />
+            <img :src="posterPath" :alt="content.title" />
           </figure>
         </div>
         <div class="media-content">
