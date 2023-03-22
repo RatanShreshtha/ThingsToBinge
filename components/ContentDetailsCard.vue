@@ -6,7 +6,7 @@ const { content } = defineProps({
   },
 });
 
-const posterPath = `https://image.tmdb.org/t/p/w300/${content.poster_path}`
+const posterPath = `https://image.tmdb.org/t/p/w400/${content.poster_path}`
 </script>
 
 
@@ -21,14 +21,15 @@ const posterPath = `https://image.tmdb.org/t/p/w300/${content.poster_path}`
         ${{ content.revenue }}.00
       </p>
       <hr />
-      <div class="media">
-        <div class="media-left">
+      <div class="columns">
+        <div class="column is-one-third">
           <figure class="image">
             <img :src="posterPath" :alt="content.title" />
           </figure>
         </div>
-        <div class="media-content">
-          <p class="title is-4">overview: <span class="has-text-weight-normal">{{ content.overview }}</span></p>
+
+        <div class="column is-two-thirds">
+          <p class="title is-4">Overview: <span class="has-text-weight-normal">{{ content.overview }}</span></p>
           <hr />
           <p><strong>Genres:</strong> {{ content.genres }}</p>
           <p><strong>Spoken Languages:</strong> {{ content.spoken_languages }}</p>
