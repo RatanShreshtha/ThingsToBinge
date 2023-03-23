@@ -15,7 +15,7 @@ if (process.client) {
   genreId = JSON.parse(localStorage.getItem(`${contentType}-genres`))[genreName]
 }
 
-
+console.log(`/api/content/${genreId}/${contentType}`);
 const { data: content } = await useFetch(`/api/content/${genreId}/${contentType}`, { key: `content:${genreName}::${contentType}`, initialCache: false })
 </script>
 

@@ -69,7 +69,7 @@ export default defineEventHandler(async (event) => {
 
     let directors = ""
     for (let obj of contentCredits['crew']) {
-        if (obj.known_for_department === 'Directing') {
+        if (obj.job === 'Director') {
             directors += `${obj.name}, `
         }
     }
