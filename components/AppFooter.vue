@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="hero-foot">
     <div class="content has-text-centered">
       <p>
         Made With love
