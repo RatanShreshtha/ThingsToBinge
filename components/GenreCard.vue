@@ -22,7 +22,7 @@ const { genre, type } = defineProps({
     </div>
     <div class="card-image">
       <figure class="image is-square">
-        <nuxt-img :src="`/img/genres/${genre.name}.png`" :alt="genre.name" placeholder />
+        <nuxt-img :src="`/images/${genre.name}.png`" :alt="genre.name" placeholder />
       </figure>
     </div>
     <div class="card-content">

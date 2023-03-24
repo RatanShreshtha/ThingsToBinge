@@ -33,8 +33,9 @@ const handleError = () =>{
               </div>
               <div class="card-image">
                 <figure class="image is-square">
-                  <nuxt-img src="/img/errors/radar.png" alt="Not Found" placeholder v-if="error.statusCode == '404'"/>
-                  <nuxt-img src="/img/errors/road-closure.png" alt="Internal Server Error" placeholder v-if="error.statusCode == '500'"/>
+                  <nuxt-img src="/images/Not Found.png" alt="Not Found" placeholder v-if="error.statusCode == '404'"/>
+                  <nuxt-img src="/images/Internal Server Error
+                  .png" alt="Internal Server Error" placeholder v-if="error.statusCode == '500'"/>
                 </figure>
               </div>
               <div class="card-content">

@@ -24,7 +24,7 @@
               </div>
               <div class="card-image">
                 <figure class="image is-square">
-                  <nuxt-img src="/img/content-type/film-reel.png" alt="Movie" placeholder />
+                  <nuxt-img src="/images/Movie.png" alt="Movie" placeholder />
                 </figure>
               </div>
               <div class="card-content">
@@ -48,7 +48,7 @@
               </div>
               <div class="card-image">
                 <figure class="image is-square">
-                  <nuxt-img src="/img/content-type/retro-tv.png" alt="TV" placeholder />
+                  <nuxt-img src="/images/TV.png" alt="TV" placeholder />
                 </figure>
               </div>
               <div class="card-content">
