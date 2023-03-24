@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['nuxt-gtag', '@nuxt/image-edge',],
+  modules: ['nuxt-gtag', '@nuxt/image-edge', '@nuxtjs/robots',],
   app: {
     head: {
       title: 'ThingsToBinge',
