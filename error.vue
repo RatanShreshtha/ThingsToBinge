@@ -22,7 +22,7 @@ const handleError = () => {
             <div class="card">
               <div class="card-content">
                 <h2 class="title">
-                  {{ error.statusCode }}
+                  {{ error.statusMessage }}
                 </h2>
               </div>
               <div class="card-image">
@@ -47,10 +47,10 @@ const handleError = () => {
                   @click="handleError()"
                 >
                   <span class="icon-text">
-                    <span>Home</span>
                     <span class="icon">
-                      <i class="fa-regular fa-circle-right"></i>
+                      <i class="fa-solid fa-house"></i>
                     </span>
+                    <span>Home</span>
                   </span>
                 </button>
               </div>
