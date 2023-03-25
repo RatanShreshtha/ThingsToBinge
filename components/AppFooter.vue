@@ -2,17 +2,24 @@
   <footer class="hero-foot">
     <div class="content has-text-centered">
       <p>
-        Made With love
+        Made With
         <span class="icon-text">
           <span class="icon has-text-danger">
-            <i class="fas fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
           </span>
-          <span>and</span>
+          <span>love</span>
         </span>
-        a lot of free
+        +
+        <span class="icon-text">
+          <span class="icon has-text-success">
+            <i class="fa-solid fa-code"></i>
+          </span>
+          <span>code</span>
+        </span>
+        +
         <span class="icon-text">
           <span class="icon has-text-info">
-            <i class="fas fa-clock"></i>
+            <i class="fa-solid fa-clock"></i>
           </span>
           <span>time.</span>
         </span>
