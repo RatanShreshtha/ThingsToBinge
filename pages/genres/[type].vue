@@ -9,18 +9,7 @@ definePageMeta({
 const route = useRoute()
 const type = route.params.type
 
-const { data } = await useFetch(`/api/genres/${type}`)
-
-const genresIdMapping = {};
-
-for (const genre of data._rawValue) {
-  genresIdMapping[genre.name] = genre.id;
-
-}
-
-if (process.client) {
-  localStorage.setItem(`${type}-genres`, JSON.stringify(genresIdMapping));
-}
+const { data: genres } = await useFetch(`/api/genres/${type}`)
 </script>
 
 <template>
@@ -36,7 +25,7 @@ if (process.client) {
 
       <div class="columns is-multiline">
         <div class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
-          v-for="genre in data">
+          v-for="genre in genres">
           <GenreCard :type="type" :genre="genre" />
         </div>
       </div>

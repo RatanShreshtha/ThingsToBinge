@@ -6,27 +6,20 @@ definePageMeta({
   }
 })
 
-let genreId
 const route = useRoute()
-const genreName = route.params.genre
-const contentType = route.params.type
+const { genre, type } = route.params
 
-if (process.client) {
-  genreId = JSON.parse(localStorage.getItem(`${contentType}-genres`))[genreName]
-}
-
-console.log(`/api/content/${genreId}/${contentType}`);
-const { data: content } = await useFetch(`/api/content/${genreId}/${contentType}`, { key: `content:${genreName}::${contentType}`, initialCache: false })
+const { data: content } = await useFetch(`/api/content/${genre}/${type}`, { initialCache: false })
 </script>
 
 <template>
   <section class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title">
-        {{ genreName }} {{ contentType }}
+        {{ genre }} {{ type }}
       </h1>
       <p class="subtitle">
-        This is our suggestion for {{ genreName.toLocaleLowerCase() }} {{ contentType }} to binge on.
+        This is our suggestion for {{ genre.toLocaleLowerCase() }} {{ type }} to binge on.
       </p>
       <hr>
       <ContentDetailsCard :content="content" />

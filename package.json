@@ -13,6 +13,7 @@
     "@nuxtjs/robots": "^3.0.0",
     "@vueuse/core": "^9.13.0",
     "@vueuse/math": "^9.13.0",
+    "@vueuse/nuxt": "^9.13.0",
     "bulma": "^0.9.4",
     "node-sass": "^8.0.0",
     "nuxt": "^3.3.1",
