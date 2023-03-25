@@ -10,12 +10,21 @@
       <hr>
 
       <div class="content">
+
         <p>
           HTML, CSS, JavaScript, Bulma, Nuxt
+        </p>
+
         <p>+</p>
-        <a href="https://supabase.com/" target="_blank">Supabase</a>
+
+        <p>
+          <a href="https://supabase.com/" target="_blank">Supabase</a>
+        </p>
+
         <p>+</p>
-        <a href="https://www.themoviedb.org" target="_blank">The Movie Database (TMDB)</a>
+
+        <p>
+          <a href="https://www.themoviedb.org" target="_blank">The Movie Database (TMDB)</a>
         </p>
       </div>
     </div>
