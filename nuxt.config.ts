@@ -1,19 +1,23 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['nuxt-gtag', '@nuxt/image-edge', '@nuxtjs/robots', '@vueuse/nuxt'],
+  modules: ["nuxt-gtag", "@nuxt/image-edge", "@nuxtjs/robots", "@vueuse/nuxt"],
   app: {
     head: {
-      title: 'ThingsToBinge',
+      title: "ThingsToBinge",
       meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Lets keep you entertained by suggesting movie and series to binge on from many genres at random.' }
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "description",
+          content:
+            "Lets keep you entertained by suggesting movie and series to binge on from many genres at random.",
+        },
       ],
     },
   },
   css: ["assets/main.scss", "@fortawesome/fontawesome-free/css/all.css"],
-  image: { provider: 'netlify' },
+  image: { provider: "netlify" },
   runtimeConfig: {
     tmdbApiKey: process.env.TMDB_API_KEY,
-    tmdbApiBaseUrl: process.env.TMDB_API_BASE_URL
-  }
-})
+    tmdbApiBaseUrl: process.env.TMDB_API_BASE_URL,
+  },
+});

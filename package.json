@@ -5,19 +5,30 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "npm run lint:js && npm run lint:prettier",
+    "lintfix": "prettier --write --list-different . && npm run lint:js --fix"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.3.0",
     "@nuxt/image-edge": "^1.0.0-27968280.9739e4d",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/robots": "^3.0.0",
+    "@typescript-eslint/parser": "^5.56.0",
     "@vueuse/core": "^9.13.0",
     "@vueuse/math": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
     "bulma": "^0.9.4",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "node-sass": "^8.0.0",
     "nuxt": "^3.3.1",
     "nuxt-gtag": "^0.3.0",
-    "sass": "^1.59.3"
+    "prettier": "^2.8.7",
+    "sass": "^1.59.3",
+    "typescript": "^5.0.2"
   }
 }

@@ -1,22 +1,18 @@
 <template>
   <section class="hero-body">
     <div class="container has-text-centered">
-
-      <h1 class="title">
-        Things To Binge
-      </h1>
+      <h1 class="title">Things To Binge</h1>
       <p class="subtitle">
-        Lets keep you entertained by suggesting movie and tv content to binge on from many genres at random.
+        Lets keep you entertained by suggesting movie and tv content to binge on
+        from many genres at random.
       </p>
-      <hr>
+      <hr />
 
       <div class="columns is-variable is-8 is-centered">
         <div class="column is-one-third">
           <div class="card">
             <div class="card-content">
-              <h2 class="title">
-                Movie
-              </h2>
+              <h2 class="title">Movie</h2>
             </div>
             <div class="card-image">
               <figure class="image is-square">
@@ -24,7 +20,10 @@
               </figure>
             </div>
             <div class="card-content">
-              <NuxtLink class="button is-dark is-outlined" :to="{ name: 'genres-type', params: { type: 'movie' } }">
+              <NuxtLink
+                class="button is-dark is-outlined"
+                :to="{ name: 'genres-type', params: { type: 'movie' } }"
+              >
                 <span class="icon-text">
                   <span>Movie</span>
                   <span class="icon">
@@ -38,9 +37,7 @@
         <div class="column is-one-third">
           <div class="card">
             <div class="card-content">
-              <h2 class="title">
-                TV
-              </h2>
+              <h2 class="title">TV</h2>
             </div>
             <div class="card-image">
               <figure class="image is-square">
@@ -48,7 +45,10 @@
               </figure>
             </div>
             <div class="card-content">
-              <NuxtLink class="button is-dark is-outlined" :to="{ name: 'genres-type', params: { type: 'tv' } }">
+              <NuxtLink
+                class="button is-dark is-outlined"
+                :to="{ name: 'genres-type', params: { type: 'tv' } }"
+              >
                 <span class="icon-text">
                   <span>TV</span>
                   <span class="icon">

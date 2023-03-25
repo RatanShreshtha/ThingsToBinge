@@ -1,5 +1,5 @@
 <script setup>
-const { genre, type } = defineProps({
+defineProps({
   genre: {
     type: Object,
     required: true,
@@ -22,12 +22,21 @@ const { genre, type } = defineProps({
     </div>
     <div class="card-image">
       <figure class="image is-square">
-        <nuxt-img :src="`/images/${genre.name}.png`" :alt="genre.name" placeholder />
+        <nuxt-img
+          :src="`/images/${genre.name}.png`"
+          :alt="genre.name"
+          placeholder
+        />
       </figure>
     </div>
     <div class="card-content">
-      <NuxtLink class="button is-dark is-outlined"
-        :to="{ name: 'content-genre-type', params: { genre: genre.name, type: type } }">
+      <NuxtLink
+        class="button is-dark is-outlined"
+        :to="{
+          name: 'content-genre-type',
+          params: { genre: genre.name, type: type },
+        }"
+      >
         <span class="icon-text">
           <span>{{ genre.name }}</span>
           <span class="icon">

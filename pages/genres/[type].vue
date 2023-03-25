@@ -1,31 +1,33 @@
 <script setup>
 definePageMeta({
-  validate: async (route) => {
+  validate: (route) => {
     // Check if the type is either movie or tv
-    return /movie|tv/.test(route.params.type)
-  }
-})
+    return /movie|tv/.test(route.params.type);
+  },
+});
 
-const route = useRoute()
-const type = route.params.type
+const route = useRoute();
+const type = route.params.type;
 
-const { data: genres } = await useFetch(`/api/genres/${type}`)
+const { data: genres } = await useFetch(`/api/genres/${type}`);
 </script>
 
 <template>
   <section class="hero-body">
     <div class="container has-text-centered">
-      <h1 class="title">
-        {{ type }} genres
-      </h1>
+      <h1 class="title">{{ type }} genres</h1>
       <p class="subtitle">
-        Lets keep you entertained by suggesting {{ type }} content to binge on from folowing genres at random.
+        Lets keep you entertained by suggesting {{ type }} content to binge on
+        from folowing genres at random.
       </p>
-      <hr>
+      <hr />
 
       <div class="columns is-multiline">
-        <div class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
-          v-for="genre in genres">
+        <div
+          v-for="genre in genres"
+          :key="genre.id"
+          class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+        >
           <GenreCard :type="type" :genre="genre" />
         </div>
       </div>
