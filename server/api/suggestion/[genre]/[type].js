@@ -4,8 +4,8 @@ export default defineEventHandler(async (event) => {
 
   const params = {
     api_key: tmdbApiKey,
-    "vote_count.gte": 500,
-    "vote_average.gte": 6.5,
+    'vote_count.gte': 500,
+    'vote_average.gte': 6.5
   };
 
   const genreUri = `${tmdbApiBaseUrl}/genre/${type}/list?api_key=${tmdbApiKey}`;
@@ -17,29 +17,23 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  const metadataUri =
-    `${tmdbApiBaseUrl}/discover/${type}?` + new URLSearchParams(params);
+  const metadataUri = `${tmdbApiBaseUrl}/discover/${type}?` + new URLSearchParams(params);
   const { total_pages: totalPages } = await $fetch(metadataUri);
 
   let totalPagesOnRetry = 1;
 
   if (totalPages < 2) {
-    params["vote_count.gte"] = 10;
-    params["vote_average.gte"] = 4.5;
+    params['vote_count.gte'] = 10;
+    params['vote_average.gte'] = 4.5;
 
-    const metadataUri =
-      `${tmdbApiBaseUrl}/discover/${type}?` + new URLSearchParams(params);
+    const metadataUri = `${tmdbApiBaseUrl}/discover/${type}?` + new URLSearchParams(params);
     const { total_pages } = await $fetch(metadataUri);
     totalPagesOnRetry = total_pages;
   }
 
-  params.page =
-    totalPages > 1
-      ? Math.ceil(Math.random() * totalPages)
-      : Math.ceil(Math.random() * totalPagesOnRetry);
+  params.page = totalPages > 1 ? Math.ceil(Math.random() * totalPages) : Math.ceil(Math.random() * totalPagesOnRetry);
 
-  const suggestionUri =
-    `${tmdbApiBaseUrl}/discover/${type}?` + new URLSearchParams(params);
+  const suggestionUri = `${tmdbApiBaseUrl}/discover/${type}?` + new URLSearchParams(params);
   const { results } = await $fetch(suggestionUri);
 
   const contentIdx = Math.floor(Math.random() * results.length);
@@ -53,50 +47,50 @@ export default defineEventHandler(async (event) => {
   const data = await Promise.all([
     $fetch(contentDetailsUri),
     $fetch(contentCreditsUri),
-    $fetch(contentWatchProvidersUri),
+    $fetch(contentWatchProvidersUri)
   ]);
 
   const [contentDetails, contentCredits, contentWatchProviders] = data;
 
-  let contentDetailsDenres = "";
-  for (let obj of contentDetails["genres"]) {
+  let contentDetailsDenres = '';
+  for (let obj of contentDetails['genres']) {
     contentDetailsDenres += `${obj.name}, `;
   }
-  contentDetails["genres"] = contentDetailsDenres.slice(0, -2);
+  contentDetails['genres'] = contentDetailsDenres.slice(0, -2);
 
-  let spoken_languages = "";
-  for (let obj of contentDetails["spoken_languages"]) {
+  let spoken_languages = '';
+  for (let obj of contentDetails['spoken_languages']) {
     spoken_languages += `${obj.english_name}, `;
   }
-  contentDetails["spoken_languages"] = spoken_languages.slice(0, -2);
+  contentDetails['spoken_languages'] = spoken_languages.slice(0, -2);
 
-  let production_companies = "";
-  for (let obj of contentDetails["production_companies"]) {
+  let production_companies = '';
+  for (let obj of contentDetails['production_companies']) {
     production_companies += `${obj.name} (${obj.origin_country}), `;
   }
-  contentDetails["production_companies"] = production_companies.slice(0, -2);
+  contentDetails['production_companies'] = production_companies.slice(0, -2);
 
-  let cast = "";
-  for (let obj of contentCredits["cast"]) {
+  let cast = '';
+  for (let obj of contentCredits['cast']) {
     cast += `${obj.name}, `;
   }
-  contentDetails["cast"] = cast.slice(0, -2);
+  contentDetails['cast'] = cast.slice(0, -2);
 
-  let writers = "";
-  for (let obj of contentCredits["crew"]) {
-    if (obj.known_for_department === "Writing") {
+  let writers = '';
+  for (let obj of contentCredits['crew']) {
+    if (obj.known_for_department === 'Writing') {
       writers += `${obj.name}, `;
     }
   }
-  contentDetails["writers"] = writers.slice(0, -2);
+  contentDetails['writers'] = writers.slice(0, -2);
 
-  let directors = "";
-  for (let obj of contentCredits["crew"]) {
-    if (obj.job === "Director") {
+  let directors = '';
+  for (let obj of contentCredits['crew']) {
+    if (obj.job === 'Director') {
       directors += `${obj.name}, `;
     }
   }
-  contentDetails["directors"] = directors.slice(0, -2);
+  contentDetails['directors'] = directors.slice(0, -2);
 
   return { ...contentDetails };
 });

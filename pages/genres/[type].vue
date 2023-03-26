@@ -3,7 +3,7 @@ definePageMeta({
   validate: (route) => {
     // Check if the type is either movie or tv
     return /movie|tv/.test(route.params.type);
-  },
+  }
 });
 
 const route = useRoute();
@@ -17,8 +17,7 @@ const { data: genres } = await useFetch(`/api/genres/${type}`);
     <div class="container has-text-centered">
       <h1 class="title">{{ type }} genres</h1>
       <p class="subtitle">
-        Lets keep you entertained by suggesting {{ type }} content to binge on
-        from folowing genres at random.
+        Lets keep you entertained by suggesting {{ type }} content to binge on from folowing genres at random.
       </p>
       <hr />
 

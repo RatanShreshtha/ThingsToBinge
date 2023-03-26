@@ -2,7 +2,7 @@
 const error = useError();
 
 const handleError = () => {
-  clearError({ redirect: "/" });
+  clearError({ redirect: '/' });
 };
 </script>
 
@@ -27,25 +27,12 @@ const handleError = () => {
               </div>
               <div class="card-image">
                 <figure class="image is-square">
-                  <nuxt-img
-                    v-if="error.statusCode == '404'"
-                    src="/images/Not Found.png"
-                    alt="Not Found"
-                    placeholder
-                  />
-                  <nuxt-img
-                    v-else
-                    src="/images/Internal Server Error.png"
-                    alt="Internal Server Error"
-                    placeholder
-                  />
+                  <nuxt-img v-if="error.statusCode == '404'" src="/images/Not Found.png" alt="Not Found" placeholder />
+                  <nuxt-img v-else src="/images/Internal Server Error.png" alt="Internal Server Error" placeholder />
                 </figure>
               </div>
               <div class="card-content">
-                <button
-                  class="button is-dark is-outlined"
-                  @click="handleError()"
-                >
+                <button class="button is-dark is-outlined" @click="handleError()">
                   <span class="icon-text">
                     <span class="icon">
                       <i class="fa-solid fa-house"></i>

@@ -1,18 +1,15 @@
 <script setup>
-import { usePrecision } from "@vueuse/math";
-import { useDateFormat } from "@vueuse/core";
+import { usePrecision } from '@vueuse/math';
+import { useDateFormat } from '@vueuse/core';
 
 const props = defineProps({
   content: {
     type: Object,
-    required: true,
-  },
+    required: true
+  }
 });
 
-const formattedReleaseDate = useDateFormat(
-  props.content.release_date,
-  "DD MMMM, YYYY"
-);
+const formattedReleaseDate = useDateFormat(props.content.release_date, 'DD MMMM, YYYY');
 </script>
 
 <template>
@@ -22,12 +19,7 @@ const formattedReleaseDate = useDateFormat(
         <div class="column is-full">
           <p class="title">
             {{ content.name }}{{ content.title }}
-            <span
-              v-if="
-                content.name != content.original_name ||
-                content.title != content.original_title
-              "
-            >
+            <span v-if="content.name != content.original_name || content.title != content.original_title">
               ({{ content.original_name }}{{ content.original_title }})
             </span>
           </p>
@@ -38,10 +30,7 @@ const formattedReleaseDate = useDateFormat(
 
         <div class="column is-one-third">
           <figure class="image is-2by3">
-            <img
-              :src="`https://image.tmdb.org/t/p/w400/${content.poster_path}`"
-              :alt="content.title"
-            />
+            <img :src="`https://image.tmdb.org/t/p/w400/${content.poster_path}`" :alt="content.title" />
           </figure>
         </div>
 
@@ -51,9 +40,7 @@ const formattedReleaseDate = useDateFormat(
           </div>
           <div class="block">
             <p><strong>Genres:</strong> {{ content.genres }}</p>
-            <p>
-              <strong>Spoken Languages:</strong> {{ content.spoken_languages }}
-            </p>
+            <p><strong>Spoken Languages:</strong> {{ content.spoken_languages }}</p>
             <p><strong>Cast:</strong> {{ content.cast }}</p>
             <p><strong>Writers:</strong> {{ content.writers }}</p>
             <p><strong>Directors:</strong> {{ content.directors }}</p>

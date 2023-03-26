@@ -2,12 +2,12 @@
 defineProps({
   genre: {
     type: Object,
-    required: true,
+    required: true
   },
   type: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 });
 </script>
 
@@ -22,11 +22,7 @@ defineProps({
     </div>
     <div class="card-image">
       <figure class="image is-square">
-        <nuxt-img
-          :src="`/images/${genre.name}.png`"
-          :alt="genre.name"
-          placeholder
-        />
+        <nuxt-img :src="`/images/${genre.name}.png`" :alt="genre.name" placeholder />
       </figure>
     </div>
     <div class="card-content">
@@ -34,7 +30,7 @@ defineProps({
         class="button is-dark is-outlined"
         :to="{
           name: 'content-genre-type',
-          params: { genre: genre.name, type: type },
+          params: { genre: genre.name, type: type }
         }"
       >
         <span class="icon-text">

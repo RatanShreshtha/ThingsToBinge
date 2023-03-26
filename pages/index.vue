@@ -3,8 +3,7 @@
     <div class="container has-text-centered">
       <h1 class="title">Things To Binge</h1>
       <p class="subtitle">
-        Lets keep you entertained by suggesting movie and tv content to binge on
-        from many genres at random.
+        Lets keep you entertained by suggesting movie and tv content to binge on from many genres at random.
       </p>
       <hr />
 
@@ -20,10 +19,7 @@
               </figure>
             </div>
             <div class="card-content">
-              <NuxtLink
-                class="button is-dark is-outlined"
-                :to="{ name: 'genres-type', params: { type: 'movie' } }"
-              >
+              <NuxtLink class="button is-dark is-outlined" :to="{ name: 'genres-type', params: { type: 'movie' } }">
                 <span class="icon-text">
                   <span>Movie</span>
                   <span class="icon">
@@ -45,10 +41,7 @@
               </figure>
             </div>
             <div class="card-content">
-              <NuxtLink
-                class="button is-dark is-outlined"
-                :to="{ name: 'genres-type', params: { type: 'tv' } }"
-              >
+              <NuxtLink class="button is-dark is-outlined" :to="{ name: 'genres-type', params: { type: 'tv' } }">
                 <span class="icon-text">
                   <span>TV</span>
                   <span class="icon">
