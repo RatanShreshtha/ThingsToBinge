@@ -1,4 +1,5 @@
 export default defineEventHandler(async (event) => {
+  const queryParams = getQuery(event);
   const { genre, type } = event.context.params;
   const { tmdbApiKey, tmdbApiBaseUrl } = useRuntimeConfig();
 
@@ -7,6 +8,9 @@ export default defineEventHandler(async (event) => {
     'vote_count.gte': 1000,
     'vote_average.gte': 6.5
   };
+
+  params.region = queryParams?.region || 'IN';
+  params.language = queryParams?.language || 'en-IN';
 
   const genreUri = `${tmdbApiBaseUrl}/genre/${type}/list?api_key=${tmdbApiKey}`;
   const { genres } = await $fetch(genreUri);
@@ -58,26 +62,31 @@ export default defineEventHandler(async (event) => {
   suggestion['spoken_languages'] = suggestionDetails['spoken_languages']
     .map((spokenLanguages) => spokenLanguages.english_name)
     .join(', ');
-    suggestion['production_companies'] = suggestionDetails['production_companies']
+  suggestion['production_companies'] = suggestionDetails['production_companies']
     .map((productionCompanies) => `${productionCompanies.name} (${productionCompanies.origin_country})`)
     .join(', ');
 
-    suggestion['actresses'] = suggestionCredits['cast']
+  suggestion['actresses'] = suggestionCredits['cast']
     .filter((cast) => cast.gender === 1)
     .map((cast) => cast.name)
     .join(', ');
-    suggestion['actors'] = suggestionCredits['cast']
+  suggestion['actors'] = suggestionCredits['cast']
     .filter((cast) => cast.gender === 2)
     .map((cast) => cast.name)
     .join(', ');
-    suggestion['writers'] = suggestionCredits['crew']
+  suggestion['writers'] = suggestionCredits['crew']
     .filter((crew) => crew.known_for_department === 'Writing')
     .map((crew) => crew.name)
     .join(', ');
-    suggestion['directors'] = suggestionCredits['crew']
+  suggestion['directors'] = suggestionCredits['crew']
     .filter((crew) => crew.job === 'Director')
     .map((crew) => crew.name)
     .join(', ');
+
+  if (params.region in suggestionWatchProviders['results']) {
+    let { buy = [], rent = [], flatrate = [] } = suggestionWatchProviders['results'][params.region];
+    suggestion['watch_providers'] = { buy, rent, flatrate };
+  }
 
   return suggestion;
 });

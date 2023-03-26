@@ -56,7 +56,7 @@ export default defineNuxtConfig({
       ]
     },
     workbox: {
-      navigateFallback: '/',
+      navigateFallback: '/'
     },
     client: {
       installPrompt: true,

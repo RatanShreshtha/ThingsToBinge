@@ -9,7 +9,13 @@ definePageMeta({
 const route = useRoute();
 const { genre, type } = route.params;
 
-const { data: content } = await useFetch(`/api/suggestion/${genre}/${type}`, {
+const ipGeolocationData = useLocalStorage('ip-geo-location-data', {});
+
+const region = ipGeolocationData.value.country;
+const language = ipGeolocationData.value.languages.split(',')[0];
+
+const { data: content } = await useFetch(`/api/suggestion/${genre}/${type}?region=${region}&language=${language}`, {
+  key: `${genre}-${type}-${Date.now()}`,
   initialCache: false
 });
 </script>

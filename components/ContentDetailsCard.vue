@@ -45,10 +45,7 @@ const formattedReleaseDate = useDateFormat(props.content.release_date, 'DD MMMM,
             <p><strong>Actresses:</strong> {{ content.actresses }}</p>
             <p><strong>Writers:</strong> {{ content.writers }}</p>
             <p><strong>Directors:</strong> {{ content.directors }}</p>
-            <p>
-              <strong>Production Companies:</strong>
-              {{ content.production_companies }}
-            </p>
+            <p><strong>Production Companies:</strong> {{ content.production_companies }}</p>
           </div>
 
           <div class="block">
@@ -62,6 +59,22 @@ const formattedReleaseDate = useDateFormat(props.content.release_date, 'DD MMMM,
             <p><strong>Budget:</strong> ${{ content.budget }}.00</p>
             <p><strong>Revenue:</strong> ${{ content.revenue }}.00</p>
             <p><strong>Release Date:</strong> {{ formattedReleaseDate }}</p>
+          </div>
+
+          <div v-if="content.watch_providers" class="block">
+            <p><strong>Available On:</strong></p>
+
+            <div v-for="(providers, kind) in content.watch_providers" :key="kind" class="columns is-multiline">
+              <div class="column is-12">
+                {{ kind }}
+              </div>
+              <br />
+              <div v-for="provider in providers" :key="`${kind}-${provider.provider_id}`" class="column">
+                <figure class="image is-48x48">
+                  <img :src="`https://image.tmdb.org/t/p/w200/${provider.logo_path}`" :alt="provider.provider_name" />
+                </figure>
+              </div>
+            </div>
           </div>
         </div>
       </div>
