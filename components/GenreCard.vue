@@ -29,7 +29,7 @@ defineProps({
       <NuxtLink
         class="button is-dark is-outlined"
         :to="{
-          name: 'content-genre-type',
+          name: 'suggestion-genre-type',
           params: { genre: genre.name, type: type }
         }"
       >
