@@ -8,7 +8,7 @@ const toggleNavbar = () => {
 
 <template>
   <header class="hero-head">
-    <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <NuxtLink class="navbar-item has-text-weight-bold" :to="{ name: 'index' }">
           <span class="is-size-5 has-text-weight-bold"> ThingsToBinge </span>

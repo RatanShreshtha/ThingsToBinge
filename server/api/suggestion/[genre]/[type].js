@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 
   const params = {
     api_key: tmdbApiKey,
-    'vote_count.gte': 500,
+    'vote_count.gte': 1000,
     'vote_average.gte': 6.5
   };
 
@@ -36,61 +36,48 @@ export default defineEventHandler(async (event) => {
   const suggestionUri = `${tmdbApiBaseUrl}/discover/${type}?` + new URLSearchParams(params);
   const { results } = await $fetch(suggestionUri);
 
-  const contentIdx = Math.floor(Math.random() * results.length);
+  const suggestionIdx = Math.floor(Math.random() * results.length);
 
-  const content = results[contentIdx];
+  const suggestionId = results[suggestionIdx].id;
 
-  const contentDetailsUri = `${tmdbApiBaseUrl}/${type}/${content.id}?api_key=${tmdbApiKey}`;
-  const contentCreditsUri = `${tmdbApiBaseUrl}/${type}/${content.id}/credits?api_key=${tmdbApiKey}`;
-  const contentWatchProvidersUri = `${tmdbApiBaseUrl}/${type}/${content.id}/watch/providers?api_key=${tmdbApiKey}`;
+  const suggestionDetailsUri = `${tmdbApiBaseUrl}/${type}/${suggestionId}?api_key=${tmdbApiKey}`;
+  const suggestionCreditsUri = `${tmdbApiBaseUrl}/${type}/${suggestionId}/credits?api_key=${tmdbApiKey}`;
+  const suggestionWatchProvidersUri = `${tmdbApiBaseUrl}/${type}/${suggestionId}/watch/providers?api_key=${tmdbApiKey}`;
 
   const data = await Promise.all([
-    $fetch(contentDetailsUri),
-    $fetch(contentCreditsUri),
-    $fetch(contentWatchProvidersUri)
+    $fetch(suggestionDetailsUri),
+    $fetch(suggestionCreditsUri),
+    $fetch(suggestionWatchProvidersUri)
   ]);
 
-  const [contentDetails, contentCredits, contentWatchProviders] = data;
+  const [suggestionDetails, suggestionCredits, suggestionWatchProviders] = data;
 
-  let contentDetailsDenres = '';
-  for (let obj of contentDetails['genres']) {
-    contentDetailsDenres += `${obj.name}, `;
-  }
-  contentDetails['genres'] = contentDetailsDenres.slice(0, -2);
+  const suggestion = { ...suggestionDetails };
 
-  let spoken_languages = '';
-  for (let obj of contentDetails['spoken_languages']) {
-    spoken_languages += `${obj.english_name}, `;
-  }
-  contentDetails['spoken_languages'] = spoken_languages.slice(0, -2);
+  suggestionDetails['genres'] = suggestionDetails['genres'].map((genre) => genre.name).join(', ');
+  suggestionDetails['spoken_languages'] = suggestionDetails['spoken_languages']
+    .map((spokenLanguages) => spokenLanguages.english_name)
+    .join(', ');
+  suggestionDetails['production_companies'] = suggestionDetails['production_companies']
+    .map((productionCompanies) => `${productionCompanies.name} (${productionCompanies.origin_country})`)
+    .join(', ');
 
-  let production_companies = '';
-  for (let obj of contentDetails['production_companies']) {
-    production_companies += `${obj.name} (${obj.origin_country}), `;
-  }
-  contentDetails['production_companies'] = production_companies.slice(0, -2);
+  suggestionDetails['actresses'] = suggestionCredits['cast']
+    .filter((cast) => cast.gender === 1)
+    .map((cast) => cast.name)
+    .join(', ');
+  suggestionDetails['actors'] = suggestionCredits['cast']
+    .filter((cast) => cast.gender === 2)
+    .map((cast) => cast.name)
+    .join(', ');
+  suggestionDetails['writers'] = suggestionCredits['crew']
+    .filter((crew) => crew.known_for_department === 'Writing')
+    .map((crew) => crew.name)
+    .join(', ');
+  suggestionDetails['directors'] = suggestionCredits['crew']
+    .filter((crew) => crew.job === 'Director')
+    .map((crew) => crew.name)
+    .join(', ');
 
-  let cast = '';
-  for (let obj of contentCredits['cast']) {
-    cast += `${obj.name}, `;
-  }
-  contentDetails['cast'] = cast.slice(0, -2);
-
-  let writers = '';
-  for (let obj of contentCredits['crew']) {
-    if (obj.known_for_department === 'Writing') {
-      writers += `${obj.name}, `;
-    }
-  }
-  contentDetails['writers'] = writers.slice(0, -2);
-
-  let directors = '';
-  for (let obj of contentCredits['crew']) {
-    if (obj.job === 'Director') {
-      directors += `${obj.name}, `;
-    }
-  }
-  contentDetails['directors'] = directors.slice(0, -2);
-
-  return { ...contentDetails };
+  return suggestion;
 });

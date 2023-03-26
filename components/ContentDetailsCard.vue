@@ -41,7 +41,8 @@ const formattedReleaseDate = useDateFormat(props.content.release_date, 'DD MMMM,
           <div class="block">
             <p><strong>Genres:</strong> {{ content.genres }}</p>
             <p><strong>Spoken Languages:</strong> {{ content.spoken_languages }}</p>
-            <p><strong>Cast:</strong> {{ content.cast }}</p>
+            <p><strong>Actors:</strong> {{ content.actors }}</p>
+            <p><strong>Actresses:</strong> {{ content.actresses }}</p>
             <p><strong>Writers:</strong> {{ content.writers }}</p>
             <p><strong>Directors:</strong> {{ content.directors }}</p>
             <p>
