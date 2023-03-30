@@ -1,15 +1,14 @@
 <script setup>
+import useGenres from '~~/composables/useGenres';
+
 definePageMeta({
-  validate: (route) => {
-    // Check if the type is either movie or tv
-    return /movie|tv/.test(route.params.type);
-  }
+  middleware: ['validate-type']
 });
 
 const route = useRoute();
 const type = route.params.type;
 
-const { data: genres } = await useFetch(`/api/genres/${type}`);
+const genres = await useGenres(type);
 </script>
 
 <template>

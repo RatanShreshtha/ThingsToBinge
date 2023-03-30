@@ -1,22 +1,25 @@
-<script setup>
+<script setup lang="ts">
+import { IpGeoLocation } from '~~/types/portal';
+import { StorageSerializers } from '@vueuse/core';
+
 definePageMeta({
-  validate: (route) => {
-    // Check if the type is either movie or tv
-    return /movie|tv/.test(route.params.type);
-  }
+  middleware: ['validate-type', 'validate-genre']
 });
 
 const route = useRoute();
 const { genre, type } = route.params;
 
-const ipGeolocationData = useLocalStorage('ip-geo-location-data', {});
+const cacheIpGeoLocation = useSessionStorage <IpGeoLocation> ('cacheIpGeoLocation', null, {
+  serializer: StorageSerializers.object
+});
 
-const region = ipGeolocationData.value.country;
-const language = ipGeolocationData.value.languages.split(',')[0];
+const region = cacheIpGeoLocation.value.country;
+const language = cacheIpGeoLocation.value.languages.split(',')[0];
 
-const { data: content } = await useFetch(`/api/suggestion/${genre}/${type}?region=${region}&language=${language}`, {
+const suggestionUri = `/api/suggestion/${genre}/${type}?region=${region}&language=${language}`
+
+const { data: content } = await useFetch(suggestionUri, {
   key: `${genre}-${type}-${Date.now()}`,
-  initialCache: false
 });
 </script>
 
