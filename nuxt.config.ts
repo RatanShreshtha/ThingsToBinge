@@ -14,6 +14,15 @@ export default defineNuxtConfig({
     }
   },
   css: ['assets/main.scss', '@fortawesome/fontawesome-free/css/all.css'],
+    routeRules: {
+    // Static page generated on-demand, revalidates in background
+    '/genres/**': { swr: true },
+    // Static page generated on-demand once
+    '/': { static: true },
+    '/about': { static: true },
+    // Render these routes with SPA
+    '/suggestion/**': { ssr: false },
+  },
   image: { provider: 'netlify' },
   pwa: {
     registerType: 'autoUpdate',
