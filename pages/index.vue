@@ -1,7 +1,7 @@
 <template>
   <section class="hero-body">
     <div class="container has-text-centered">
-      <h1 class="title">Things To Binge</h1>
+      <h1 class="title">ThingsToBinge</h1>
       <p class="subtitle">
         Lets keep you entertained by suggesting movie and tv content to binge on from many genres at random.
       </p>
