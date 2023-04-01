@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { IpGeoLocation } from '~~/types/portal';
 import { StorageSerializers } from '@vueuse/core';
+
+import { IpGeoLocation } from '~~/types/portal';
 
 definePageMeta({
   middleware: ['validate-type', 'validate-genre']

@@ -1,6 +1,6 @@
 import useGenres from '~~/composables/useGenres';
 
-export default defineNuxtRouteMiddleware(async (to, from) => {
+export default defineNuxtRouteMiddleware(async (to) => {
   let go = false;
   const type = to.params.type;
   const genre = to.params.genre;

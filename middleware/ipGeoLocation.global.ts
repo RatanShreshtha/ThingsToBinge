@@ -1,7 +1,8 @@
-import { IpGeoLocation } from '~~/types/portal';
 import { StorageSerializers } from '@vueuse/core';
 
-export default defineNuxtRouteMiddleware(async (to, from) => {
+import { IpGeoLocation } from '~~/types/portal';
+
+export default defineNuxtRouteMiddleware(async () => {
   const url = `https://ipapi.co/json/`;
   const cacheIpGeoLocation = useSessionStorage<IpGeoLocation>('cacheIpGeoLocation', null, {
     serializer: StorageSerializers.object
@@ -18,7 +19,5 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
 
     cacheIpGeoLocation.value = data.value as IpGeoLocation;
-  } else {
-    console.log(`Getting value from cacheIpGeoLocation for ${url}`);
   }
 });

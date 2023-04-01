@@ -16,8 +16,6 @@ export default async <T>(url: string) => {
     }
 
     cache.value = data.value as T;
-  } else {
-    console.log(`Getting value from cache for ${url}`);
   }
 
   return cache;
