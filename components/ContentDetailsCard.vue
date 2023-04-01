@@ -64,17 +64,31 @@ const formattedReleaseDate = useDateFormat(props.content.release_date, 'DD MMMM,
           <div v-if="content.watch_providers" class="block">
             <p><strong>Available On:</strong></p>
 
-            <div v-for="(providers, kind) in content.watch_providers" :key="kind" class="columns is-multiline">
-              <div class="column is-12">
-                {{ kind }}
-              </div>
-              <br />
-              <div v-for="provider in providers" :key="`${kind}-${provider.provider_id}`" class="column">
-                <figure class="image is-48x48">
-                  <img :src="`https://image.tmdb.org/t/p/w200/${provider.logo_path}`" :alt="provider.provider_name" />
-                </figure>
-              </div>
-            </div>
+            <template v-for="(providers, kind) in content.watch_providers" :key="kind">
+              <template v-if="providers.length > 0">
+                <p>
+                  <strong>{{ kind }}</strong>
+                </p>
+
+                <nav class="level is-mobile">
+                  <div class="level-left">
+                    <a
+                      v-for="provider in providers"
+                      :key="`${kind}-${provider.provider_id}`"
+                      class="level-item"
+                      :title="provider.provider_name"
+                    >
+                      <figure class="image is-32x32">
+                        <img
+                          :src="`https://image.tmdb.org/t/p/w200/${provider.logo_path}`"
+                          :alt="provider.provider_name"
+                        />
+                      </figure>
+                    </a>
+                  </div>
+                </nav>
+              </template>
+            </template>
           </div>
         </div>
       </div>

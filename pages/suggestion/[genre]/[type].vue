@@ -9,17 +9,17 @@ definePageMeta({
 const route = useRoute();
 const { genre, type } = route.params;
 
-const cacheIpGeoLocation = useSessionStorage <IpGeoLocation> ('cacheIpGeoLocation', null, {
+const cacheIpGeoLocation = useSessionStorage<IpGeoLocation>('cacheIpGeoLocation', null, {
   serializer: StorageSerializers.object
 });
 
 const region = cacheIpGeoLocation.value.country;
 const language = cacheIpGeoLocation.value.languages.split(',')[0];
 
-const suggestionUri = `/api/suggestion/${genre}/${type}?region=${region}&language=${language}`
+const suggestionUri = `/api/suggestion/${genre}/${type}?region=${region}&language=${language}`;
 
 const { data: content } = await useFetch(suggestionUri, {
-  key: `${genre}-${type}-${Date.now()}`,
+  key: `${genre}-${type}-${Date.now()}`
 });
 </script>
 
