@@ -93,5 +93,6 @@ const formattedReleaseDate = useDateFormat(props.content.release_date, 'DD MMMM,
         </div>
       </div>
     </div>
+    <slot name="footer"></slot>
   </div>
 </template>

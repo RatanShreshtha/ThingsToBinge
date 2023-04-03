@@ -19,7 +19,7 @@ const language = cacheIpGeoLocation.value.languages.split(',')[0];
 
 const suggestionUri = `/api/suggestion/${genre}/${type}?region=${region}&language=${language}`;
 
-const { data: content } = await useFetch(suggestionUri, {
+const { data: content, refresh } = await useFetch(suggestionUri, {
   key: `${genre}-${type}-${Date.now()}`
 });
 </script>
@@ -30,7 +30,11 @@ const { data: content } = await useFetch(suggestionUri, {
       <h1 class="title">{{ genre }} {{ type }}</h1>
       <p class="subtitle">This is our suggestion for {{ genre.toLocaleLowerCase() }} {{ type }} to binge on.</p>
       <hr />
-      <ContentDetailsCard :content="content" />
+      <ContentDetailsCard :content="content">
+        <template v-slot:footer>
+          <ContentDetailsCardFooter @anotherSuggestion="refresh()"/>
+        </template>
+      </ContentDetailsCard>
     </div>
   </section>
 </template>
