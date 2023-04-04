@@ -22,9 +22,17 @@ const suggestionUri = `/api/suggestion/${genre}/${type}?region=${region}&languag
 const { data: content, refresh } = await useFetch(suggestionUri, {
   key: `${genre}-${type}-${Date.now()}`
 });
+
+const isActive = ref(false)
+
+const handleShare = () => {
+  isActive.value = !isActive.value
+}
 </script>
 
 <template>
+  <ShareModal :type="type" :isActive="isActive" :content="content" @closeShare="isActive = !isActive" />
+
   <section class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title">{{ genre }} {{ type }}</h1>
@@ -32,7 +40,7 @@ const { data: content, refresh } = await useFetch(suggestionUri, {
       <hr />
       <ContentDetailsCard :content="content">
         <template v-slot:footer>
-          <ContentDetailsCardFooter @anotherSuggestion="refresh()"/>
+          <ContentDetailsCardFooter @anotherSuggestion="refresh()" @share="handleShare()" />
         </template>
       </ContentDetailsCard>
     </div>

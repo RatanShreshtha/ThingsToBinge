@@ -21,7 +21,8 @@ export default defineNuxtConfig({
     '/': { static: true },
     '/about': { static: true },
     // Render these routes with SPA
-    '/suggestion/**': { ssr: false }
+    '/share/**': { ssr: false },
+    '/suggestion/**': { ssr: false },
   },
   image: { provider: 'netlify' },
   pwa: {
