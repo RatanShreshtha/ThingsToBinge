@@ -1,5 +1,5 @@
 <script setup>
-defineEmits(['anotherSuggestion', 'share'])
+defineEmits(['anotherSuggestion', 'share']);
 </script>
 
 <template>

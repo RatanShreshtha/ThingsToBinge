@@ -23,24 +23,24 @@ const { data: content, refresh } = await useFetch(suggestionUri, {
   key: `${genre}-${type}-${Date.now()}`
 });
 
-const isActive = ref(false)
+const isActive = ref(false);
 
 const handleShare = () => {
-  isActive.value = !isActive.value
-}
+  isActive.value = !isActive.value;
+};
 </script>
 
 <template>
-  <ShareModal :type="type" :isActive="isActive" :content="content" @closeShare="isActive = !isActive" />
-
   <section class="hero-body">
+    <ShareModal :type="type" :is-active="isActive" :content="content" @close-share="isActive = !isActive" />
+
     <div class="container has-text-centered">
       <h1 class="title">{{ genre }} {{ type }}</h1>
       <p class="subtitle">This is our suggestion for {{ genre.toLocaleLowerCase() }} {{ type }} to binge on.</p>
       <hr />
       <ContentDetailsCard :content="content">
-        <template v-slot:footer>
-          <ContentDetailsCardFooter @anotherSuggestion="refresh()" @share="handleShare()" />
+        <template #footer>
+          <ContentDetailsCardFooter @another-suggestion="refresh()" @share="handleShare()" />
         </template>
       </ContentDetailsCard>
     </div>

@@ -19,10 +19,9 @@ const language = cacheIpGeoLocation.value.languages.split(',')[0];
 
 const suggestionUri = `/api/share/${type}/${id}?region=${region}&language=${language}`;
 
-const { data: content, refresh } = await useFetch(suggestionUri, {
+const { data: content } = await useFetch(suggestionUri, {
   key: `${id}-${type}-${Date.now()}`
 });
-
 </script>
 
 <template>
