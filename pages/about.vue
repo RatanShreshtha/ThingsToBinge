@@ -9,15 +9,84 @@
         <ul>
           <li>Front-End</li>
           <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Bulma</li>
-            <li>Nuxt</li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <img src="~/assets/logos/html-5.svg" />
+                </span>
+                <span>HTML</span>
+              </span>
+            </li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <img src="~/assets/logos/css-3.svg" />
+                </span>
+                <span>CSS</span>
+              </span>
+            </li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <img src="~/assets/logos/javascript.svg" />
+                </span>
+                <span>JavaScript</span>
+              </span>
+            </li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <img src="~/assets/logos/bulma.svg" />
+                </span>
+                <span>Bulma</span>
+              </span>
+            </li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <img src="~/assets/logos/nuxt-icon.svg" />
+                </span>
+                <span>Nuxt</span>
+              </span>
+            </li>
           </ul>
-          <li>Database</li>
+          <li>Backend-End</li>
           <ul>
-            <li><a href="https://supabase.com/" target="_blank">Supabase</a></li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <img src="~/assets/logos/postgresql.svg" />
+                </span>
+                <span>Postgres</span>
+              </span>
+            </li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <img src="~/assets/logos/supabase-icon.svg" />
+                </span>
+                <span>Supabase</span>
+              </span>
+            </li>
+          </ul>
+          <li>Hosting & Deployment</li>
+          <ul>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <img src="~/assets/logos/netlify-icon.svg" />
+                </span>
+                <span>Netlify</span>
+              </span>
+            </li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <img src="~/assets/logos/google-domains-icon.svg" />
+                </span>
+                <span>Google Domains</span>
+              </span>
+            </li>
           </ul>
           <li>Content & Watch Providers</li>
           <ul>
