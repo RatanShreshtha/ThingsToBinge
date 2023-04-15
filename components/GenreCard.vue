@@ -20,8 +20,8 @@ defineProps({
         </div>
       </div>
     </div>
-    <div class="card-image">
-      <figure class="image is-square">
+    <div class="card-image is-flex is-justify-content-center">
+      <figure class="image is-128x128">
         <nuxt-img :src="`/images/${genre.name}.png`" :alt="genre.name" placeholder />
       </figure>
     </div>

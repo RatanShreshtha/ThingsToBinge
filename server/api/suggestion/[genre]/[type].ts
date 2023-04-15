@@ -58,10 +58,12 @@ export default defineEventHandler(async (event) => {
 
   const suggestion = { ...suggestionDetails };
 
-  suggestion['genres'] = suggestionDetails['genres'].map((genre) => genre.name).join(', ');
-  suggestion['spoken_languages'] = suggestionDetails['spoken_languages']
-    .map((spokenLanguages) => spokenLanguages.english_name)
-    .join(', ');
+  // suggestion['genres'] = suggestionDetails['genres'].map((genre) => genre.name).join(', ');
+
+  // suggestion['spoken_languages'] = suggestionDetails['spoken_languages']
+  //   .map((spokenLanguages) => spokenLanguages.english_name)
+  //   .join(', ');
+
   suggestion['production_companies'] = suggestionDetails['production_companies']
     .map((productionCompanies) => `${productionCompanies.name} (${productionCompanies.origin_country})`)
     .join(', ');
@@ -70,10 +72,12 @@ export default defineEventHandler(async (event) => {
     .filter((cast) => cast.gender === 1)
     .map((cast) => cast.name)
     .join(', ');
+
   suggestion['actors'] = suggestionCredits['cast']
     .filter((cast) => cast.gender === 2)
     .map((cast) => cast.name)
     .join(', ');
+
   suggestion['writers'] = suggestionCredits['crew']
     .filter((crew) => crew.known_for_department === 'Writing')
     .map((crew) => crew.name)
