@@ -5,12 +5,11 @@ export default defineEventHandler(async (event) => {
 
   const params = {
     api_key: tmdbApiKey,
+    region: queryParams?.region || 'IN',
     'vote_count.gte': 1000,
-    'vote_average.gte': 6.5
+    'vote_average.gte': 6.5,
+    language: queryParams?.language || 'en-IN'
   };
-
-  params.region = queryParams?.region || 'IN';
-  params.language = queryParams?.language || 'en-IN';
 
   const genreUri = `${tmdbApiBaseUrl}/genre/${type}/list?api_key=${tmdbApiKey}`;
   const { genres } = await $fetch(genreUri);
@@ -31,8 +30,8 @@ export default defineEventHandler(async (event) => {
     params['vote_average.gte'] = 4.5;
 
     const metadataUri = `${tmdbApiBaseUrl}/discover/${type}?` + new URLSearchParams(params);
-    const { total_pages } = await $fetch(metadataUri);
-    totalPagesOnRetry = total_pages;
+    const { total_pages: totalPages } = await $fetch(metadataUri);
+    totalPagesOnRetry = totalPages;
   }
 
   params.page = totalPages > 1 ? Math.ceil(Math.random() * totalPages) : Math.ceil(Math.random() * totalPagesOnRetry);
@@ -44,53 +43,5 @@ export default defineEventHandler(async (event) => {
 
   const suggestionId = results[suggestionIdx].id;
 
-  const suggestionDetailsUri = `${tmdbApiBaseUrl}/${type}/${suggestionId}?api_key=${tmdbApiKey}`;
-  const suggestionCreditsUri = `${tmdbApiBaseUrl}/${type}/${suggestionId}/credits?api_key=${tmdbApiKey}`;
-  const suggestionWatchProvidersUri = `${tmdbApiBaseUrl}/${type}/${suggestionId}/watch/providers?api_key=${tmdbApiKey}`;
-
-  const data = await Promise.all([
-    $fetch(suggestionDetailsUri),
-    $fetch(suggestionCreditsUri),
-    $fetch(suggestionWatchProvidersUri)
-  ]);
-
-  const [suggestionDetails, suggestionCredits, suggestionWatchProviders] = data;
-
-  const suggestion = { ...suggestionDetails };
-
-  // suggestion['genres'] = suggestionDetails['genres'].map((genre) => genre.name).join(', ');
-
-  // suggestion['spoken_languages'] = suggestionDetails['spoken_languages']
-  //   .map((spokenLanguages) => spokenLanguages.english_name)
-  //   .join(', ');
-
-  suggestion['production_companies'] = suggestionDetails['production_companies']
-    .map((productionCompanies) => `${productionCompanies.name} (${productionCompanies.origin_country})`)
-    .join(', ');
-
-  suggestion['actresses'] = suggestionCredits['cast']
-    .filter((cast) => cast.gender === 1)
-    .map((cast) => cast.name)
-    .join(', ');
-
-  suggestion['actors'] = suggestionCredits['cast']
-    .filter((cast) => cast.gender === 2)
-    .map((cast) => cast.name)
-    .join(', ');
-
-  suggestion['writers'] = suggestionCredits['crew']
-    .filter((crew) => crew.known_for_department === 'Writing')
-    .map((crew) => crew.name)
-    .join(', ');
-  suggestion['directors'] = suggestionCredits['crew']
-    .filter((crew) => crew.job === 'Director')
-    .map((crew) => crew.name)
-    .join(', ');
-
-  if (params.region in suggestionWatchProviders['results']) {
-    let { buy = [], rent = [], flatrate = [] } = suggestionWatchProviders['results'][params.region];
-    suggestion['watch_providers'] = { buy, rent, flatrate };
-  }
-
-  return suggestion;
+  return suggestionId;
 });

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { StorageSerializers } from '@vueuse/core';
-
-import { IpGeoLocation } from '~~/types/portal';
+import useSuggestion from '~~/composables/useSuggestion';
+import useContent from '~~/composables/useContent';
 
 definePageMeta({
   middleware: ['validate-type', 'validate-genre']
@@ -10,39 +9,18 @@ definePageMeta({
 const route = useRoute();
 const { genre, type } = route.params;
 
-const cacheIpGeoLocation = useSessionStorage<IpGeoLocation>('cacheIpGeoLocation', null, {
-  serializer: StorageSerializers.object
-});
-
-const region = cacheIpGeoLocation.value.country;
-const language = cacheIpGeoLocation.value.languages.split(',')[0];
-
-const suggestionUri = `/api/suggestion/${genre}/${type}?region=${region}&language=${language}`;
-
-const { data: content, refresh } = await useFetch(suggestionUri, {
-  key: `${genre}-${type}-${Date.now()}`
-});
-
-const isActive = ref(false);
-
-const handleShare = () => {
-  isActive.value = !isActive.value;
-};
+const id = await useSuggestion(genre, type);
+const content = await useContent(type, id);
 </script>
 
 <template>
   <section class="hero-body">
-    <ShareModal :type="type" :is-active="isActive" :content="content" @close-share="isActive = !isActive" />
-
     <div class="container has-text-centered">
       <h1 class="title">{{ genre }} {{ type }}</h1>
       <p class="subtitle">This is our suggestion for {{ genre.toLocaleLowerCase() }} {{ type }} to binge on.</p>
       <hr />
-      <ContentDetailsCard :content="content">
-        <template #footer>
-          <ContentDetailsCardFooter @another-suggestion="refresh()" @share="handleShare()" />
-        </template>
-      </ContentDetailsCard>
+
+      <ContentDetailsCard :content="content" />
     </div>
   </section>
 </template>

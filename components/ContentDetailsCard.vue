@@ -1,15 +1,10 @@
 <script setup>
-import { usePrecision } from '@vueuse/math';
-import { useDateFormat } from '@vueuse/core';
-
-const props = defineProps({
+defineProps({
   content: {
     type: Object,
     required: true
   }
 });
-
-const formattedReleaseDate = useDateFormat(props.content.release_date, 'DD MMMM, YYYY');
 </script>
 
 <template>
@@ -52,13 +47,13 @@ const formattedReleaseDate = useDateFormat(props.content.release_date, 'DD MMMM,
             <p><strong>Runtime:</strong> {{ content.runtime }}</p>
             <p>
               <strong>Ratings:</strong>
-              {{ usePrecision(content.vote_average, 1) }}
+              {{ content.vote_average }}
             </p>
             <p><strong>Total Votes:</strong> {{ content.vote_count }}</p>
 
             <p><strong>Budget:</strong> ${{ content.budget }}.00</p>
             <p><strong>Revenue:</strong> ${{ content.revenue }}.00</p>
-            <p><strong>Release Date:</strong> {{ formattedReleaseDate }}</p>
+            <p><strong>Release Date:</strong> {{ content.release_date }}</p>
           </div>
 
           <div v-if="content.watch_providers" class="block">
