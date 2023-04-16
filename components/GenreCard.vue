@@ -12,20 +12,20 @@ defineProps({
 </script>
 
 <template>
-  <div class="card">
-    <div class="card-content">
+  <article class="card">
+    <header class="card-content">
       <div class="media">
         <div class="media-content">
           <p class="title is-6">{{ genre.name }}</p>
         </div>
       </div>
-    </div>
-    <div class="card-image is-flex is-justify-content-center">
+    </header>
+    <section class="card-image is-flex is-justify-content-center">
       <figure class="image is-128x128">
         <nuxt-img :src="`/images/${genre.name}.png`" :alt="genre.name" placeholder />
       </figure>
-    </div>
-    <div class="card-content">
+    </section>
+    <footer class="card-content">
       <NuxtLink
         class="button is-dark is-outlined"
         :to="{
@@ -40,6 +40,6 @@ defineProps({
           </span>
         </span>
       </NuxtLink>
-    </div>
-  </div>
+    </footer>
+  </article>
 </template>
