@@ -29,6 +29,14 @@ const handleRefresh = () => {
       <p class="subtitle is-3">This is our suggestion for {{ genre.toLocaleLowerCase() }} {{ type }} to binge on.</p>
       <hr />
 
+      <LazyShareModal
+        v-if="isActive"
+        :type="type"
+        :is-active="isActive"
+        :content="content"
+        @close-share="isActive = !isActive"
+      />
+
       <ContentCard :content="content">
         <template #footer>
           <ContentCardFooter @refresh="handleRefresh()" @share="handleShare()" />

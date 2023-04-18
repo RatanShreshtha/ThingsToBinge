@@ -8,8 +8,8 @@ defineProps({
 </script>
 
 <template>
-  <div class="card has-text-left">
-    <div class="card-content">
+  <article class="card has-text-left">
+    <section class="card-content">
       <div class="columns is-multiline">
         <div class="column is-full">
           <p class="title">
@@ -87,7 +87,7 @@ defineProps({
           </div>
         </div>
       </div>
-    </div>
+    </section>
     <slot name="footer"></slot>
-  </div>
+  </article>
 </template>
