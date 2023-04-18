@@ -1,8 +1,8 @@
 <template>
   <section class="hero-body">
-    <div class="container has-text-centered">
-      <h1 class="title">ThingsToBinge</h1>
-      <p class="subtitle">This portal suggests movie and tv content to binge on from many genres at random.</p>
+    <div class="container is-fluid has-text-centered">
+      <h1 class="title is-1">ThingsToBinge</h1>
+      <p class="subtitle is-3">This portal suggests movie and tv content to binge on from many genres at random.</p>
       <hr />
 
       <div class="content has-text-left">

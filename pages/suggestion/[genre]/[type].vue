@@ -24,16 +24,9 @@ const handleRefresh = () => {
 
 <template>
   <section class="hero-body">
-    <LazyShareModal
-      v-if="isActive"
-      :type="type"
-      :is-active="isActive"
-      :content="content"
-      @close-share="isActive = !isActive"
-    />
-    <div class="container has-text-centered">
-      <h1 class="title">{{ genre }} {{ type }}</h1>
-      <p class="subtitle">This is our suggestion for {{ genre.toLocaleLowerCase() }} {{ type }} to binge on.</p>
+    <div class="container is-fluid has-text-centered">
+      <h1 class="title is-1">{{ genre }} {{ type }}</h1>
+      <p class="subtitle is-3">This is our suggestion for {{ genre.toLocaleLowerCase() }} {{ type }} to binge on.</p>
       <hr />
 
       <ContentCard :content="content">

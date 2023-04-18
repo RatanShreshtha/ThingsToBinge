@@ -11,9 +11,9 @@ const content = await useContent(type, id);
 
 <template>
   <section class="hero-body">
-    <div class="container has-text-centered">
-      <h1 class="title">Shared To You</h1>
-      <p class="subtitle">This is a suggestion for you to binge on by someone.</p>
+    <div class="container is-fluid has-text-centered">
+      <h1 class="title is-1">Shared To You</h1>
+      <p class="subtitle is-3">This is a suggestion for you to binge on by someone.</p>
       <hr />
 
       <ContentCard :content="content" />

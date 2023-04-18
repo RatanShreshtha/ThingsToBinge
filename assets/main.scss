@@ -8,6 +8,7 @@ $family-sans-serif: 'Jost', sans-serif;
 
 $footer-background-color: hsl(0, 0%, 96%);
 $footer-padding: 1rem 2.5rem;
+$dimensions: 16 24 32 48 64 96 128 256;
 
 @import '../node_modules/bulma/sass/base/_all';
 @import '../node_modules/bulma/sass/elements/_all';
