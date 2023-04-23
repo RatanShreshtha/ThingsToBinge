@@ -1,7 +1,7 @@
 import { StorageSerializers, useDateFormat } from '@vueuse/core';
 import { usePrecision } from '@vueuse/math';
 
-import { IpGeoLocation } from '~~/types/portal';
+import { Content, IpGeoLocation } from '~~/types/portal';
 
 export default async (typeSlug: string, contentId: string) => {
   const cacheIpGeoLocation = useSessionStorage<IpGeoLocation>('cacheIpGeoLocation', null, {
@@ -11,7 +11,7 @@ export default async (typeSlug: string, contentId: string) => {
   const region = cacheIpGeoLocation.value.country;
   const language = cacheIpGeoLocation.value.languages.split(',')[0];
   const url = `/api/content/${typeSlug}/${contentId}?region=${region}&language=${language}`;
-  const { data, error } = await useFetch<T>(url);
+  const { data, error } = await useFetch<Content>(url);
 
   if (error.value) {
     throw createError({

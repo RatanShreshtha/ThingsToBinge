@@ -29,7 +29,7 @@ export type Language = {
   name: string;
 };
 
-export type Suggestion = {
+export type Content = {
   id: number;
   imdb_id: string;
   name: string;
@@ -49,6 +49,7 @@ export type Suggestion = {
   spoken_languages: Language[];
   vote_average: number;
   vote_count: number;
+  release_date: string;
 };
 
 export type IpGeoLocation = {

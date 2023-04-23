@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['nuxt-gtag', '@nuxt/image-edge', '@nuxtjs/robots', '@vite-pwa/nuxt', '@vueuse/nuxt'],
+  modules: ['nuxt-gtag', '@nuxt/image-edge', '@nuxtjs/robots', '@vite-pwa/nuxt', '@vueuse/nuxt', '@pinia/nuxt'],
   app: {
     head: {
       title: 'ThingsToBinge',
@@ -15,14 +15,11 @@ export default defineNuxtConfig({
   },
   css: ['assets/main.scss', '@fortawesome/fontawesome-free/css/all.css'],
   routeRules: {
-    // Static page generated on-demand, revalidates in background
-    '/genres/**': { swr: true },
-    // Static page generated on-demand once
     '/': { static: true },
-    '/about': { static: true },
-    // Render these routes with SPA
+    '/genres/**': { ssr: true },
     '/share/**': { ssr: false },
-    '/suggestion/**': { ssr: false }
+    '/suggestion/**': { ssr: false },
+    '/about': { static: true }
   },
   image: { provider: 'netlify' },
   pwa: {

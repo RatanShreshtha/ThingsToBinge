@@ -1,25 +1,24 @@
 <script setup lang="ts">
-import useSuggestion from '~~/composables/useSuggestion';
+import { storeToRefs } from 'pinia';
+
+import { useSuggestionStore } from '~/stores/suggestion';
 import useContent from '~~/composables/useContent';
+import useSuggestion from '~~/composables/useSuggestion';
+const store = useSuggestionStore();
+const { storeSuggestedContent } = store;
+const { sharePopup } = storeToRefs(store);
 
 definePageMeta({
   middleware: ['validate-type', 'validate-genre']
 });
 
 const route = useRoute();
-const isActive = ref(false);
 const { genre, type } = route.params;
 
 const id = await useSuggestion(genre, type);
 const content = await useContent(type, id);
 
-const handleShare = () => {
-  isActive.value = !isActive.value;
-};
-
-const handleRefresh = () => {
-  reloadNuxtApp({ ttl: 1000 });
-};
+storeSuggestedContent(content);
 </script>
 
 <template>
@@ -29,17 +28,11 @@ const handleRefresh = () => {
       <p class="subtitle is-3">This is our suggestion for {{ genre.toLocaleLowerCase() }} {{ type }} to binge on.</p>
       <hr />
 
-      <LazyShareModal
-        v-if="isActive"
-        :type="type"
-        :is-active="isActive"
-        :content="content"
-        @close-share="isActive = !isActive"
-      />
+      <LazyShareModal v-if="sharePopup" />
 
       <ContentCard :content="content">
         <template #footer>
-          <ContentCardFooter @refresh="handleRefresh()" @share="handleShare()" />
+          <ContentCardFooter />
         </template>
       </ContentCard>
     </div>

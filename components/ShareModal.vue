@@ -1,20 +1,13 @@
 <script setup>
-defineEmits(['closeShare']);
+import { storeToRefs } from 'pinia';
+import { useSuggestionStore } from '~/stores/suggestion';
+const store = useSuggestionStore();
+const { closeSharePopup } = store;
 
-const props = defineProps({
-  type: {
-    type: String,
-    required: true
-  },
-  isActive: {
-    type: Boolean,
-    default: false
-  },
-  content: {
-    type: Object,
-    required: true
-  }
-});
+const { sharePopup, suggestedContent } = storeToRefs(store);
+const {
+  params: { type }
+} = useRoute();
 
 const socialMedias = [
   { network: 'email', name: 'Email', icon: 'fa-regular fa-envelope', color: '#333333' },
@@ -28,17 +21,17 @@ const socialMedias = [
 ];
 
 const shareTitle = computed(() => {
-  return props.content.name ? props.content.name : props.content.title;
+  return suggestedContent.value.name ? suggestedContent.value.name : suggestedContent.value.title;
 });
 
 const shareUrl = computed(() => {
-  return `${window.location.origin}/share/${props.type}/${props.content.id}`;
+  return `${window.location.origin}/share/${type}/${suggestedContent.value.id}`;
 });
 </script>
 
 <template>
-  <article class="modal" :class="{ 'is-active': isActive }">
-    <section class="modal-background" @click="isActive = !isActive"></section>
+  <article class="modal" :class="{ 'is-active': sharePopup }">
+    <section class="modal-background" @click="closeSharePopup()"></section>
     <section class="modal-content">
       <div class="box">
         <h1 class="title">Share</h1>
@@ -52,7 +45,7 @@ const shareUrl = computed(() => {
                   :network="socialMedia.network"
                   :url="shareUrl"
                   :title="shareTitle"
-                  :description="content.overview"
+                  :description="suggestedContent.overview"
                 >
                   <span class="icon is-large">
                     <i :class="socialMedia.icon" :style="`color: ${socialMedia.color};`"></i>
@@ -65,6 +58,6 @@ const shareUrl = computed(() => {
         </nav>
       </div>
     </section>
-    <button class="modal-close is-large" aria-label="close" @click="isActive = !isActive"></button>
+    <button class="modal-close is-large" aria-label="close" @click="closeSharePopup()"></button>
   </article>
 </template>
