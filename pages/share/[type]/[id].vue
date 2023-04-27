@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  middleware: ['validate-type']
+  middleware: ['ip-geo-location', 'validate-type']
 });
 
 const route = useRoute();

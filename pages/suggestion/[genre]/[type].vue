@@ -9,7 +9,7 @@ const { storeSuggestedContent } = store;
 const { sharePopup } = storeToRefs(store);
 
 definePageMeta({
-  middleware: ['validate-type', 'validate-genre']
+  middleware: ['ip-geo-location', 'validate-type', 'validate-genre']
 });
 
 const route = useRoute();

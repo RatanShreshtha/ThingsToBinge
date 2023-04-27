@@ -2,7 +2,7 @@
 import useGenres from '~~/composables/useGenres';
 
 definePageMeta({
-  middleware: ['validate-type']
+  middleware: ['ip-geo-location', 'validate-type']
 });
 
 const route = useRoute();
