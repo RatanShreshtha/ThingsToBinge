@@ -27,7 +27,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "node-sass": "^8.0.0",
-    "nuxt": "^3.4.1",
+    "nuxt": "^3.4.3",
     "nuxt-gtag": "^0.3.0",
     "pinia": "^2.0.35",
     "prettier": "^2.8.7",
@@ -37,8 +37,5 @@
   },
   "overrides": {
     "vue": "latest"
-  },
-  "peerDependencies": {
-    "consola": "3.0.1"
   }
 }
